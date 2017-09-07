@@ -5,16 +5,33 @@ import { Row, Col, Card } from 'antd';
 
 class MTGCard extends Component {
     state = {
-        card: this.props.card
+        card: null
+    }
+
+    componentWillMount() {
+        if (this.props.match.params.id !== undefined) {
+            mtg.card.find(this.props.match.params.id)
+            .then((result) => {
+                this.setState({card: result.card});
+            });
+        }
+
     }
 
     render() {
-        return (<img src={this.state.card.imageUrl} alt={this.state.card.name}/>);
+        const card = this.state.card;
+        if (card === null) {
+            return <div> Loading</div>
+        }
+        return (<div>
+                    <h3>{card.name}</h3>
+                    <img src={card.imageUrl} alt={card.name}/>
+                </div>);
     }
 }
 
 Card.propTypes = {
-    card: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
 };
 
 export default MTGCard;

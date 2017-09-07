@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import mtg from 'mtgsdk';
 import { Row, Col } from 'antd';
-
+import {
+    Link
+  } from 'react-router-dom'
 
 class CardList extends Component {
     state = {
@@ -24,7 +26,8 @@ class CardList extends Component {
     }
     render() {
         let list = this.state.cards.map((card, idx) => {
-            return <Col span={6} key={idx} style={{padding: 20}} onClick={loadImag}>
+            console.log(card);
+            return <Col span={6} key={idx} style={{padding: 20}} onClick={() => this.props.history.push('/card/' + card.id)}>
                         <img src={card.imageUrl} alt={card.name} width="250px"/>
                     </Col>
         });
