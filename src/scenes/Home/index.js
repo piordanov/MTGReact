@@ -3,7 +3,8 @@ import logo from '../../logo.svg';
 import './App.css';
 import mtg from 'mtgsdk';
 
-import Card from 'components/Card';
+
+import CardList from 'components/CardList';
 
 class App extends Component {
 
@@ -14,8 +15,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Magic The Gathering</h2>
         </div>
-        <Card card={3}/ >
-
+        <CardList />
       </div>
     );
   }
